@@ -35,7 +35,7 @@ void printArr(int arr[SIZE]) {
 int partition(int arr[SIZE], int low, int high) {
     int pivot = arr[high];
     int i = (low - 1);
-    for(int j = low; j < SIZE; j++) {
+    for(int j = low; j < high; j++) {
         if(arr[j] < pivot) {
             std::swap(arr[++i], arr[j]);
         }
