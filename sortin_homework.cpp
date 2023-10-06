@@ -10,6 +10,7 @@ void qsort(int arr[SIZE], int low = 0, int high = SIZE - 1);
 void insertion_sort(int arr[SIZE]);
 void bubble_sort(int arr[SIZE]);
 int recursive_bubble_sort(int arr[SIZE], int i = 0, int j = 1);
+void selection_sort(int*, const int)
 
 
 int main() {
@@ -95,6 +96,18 @@ void insertion_sort(int arr[SIZE]) {
     return;
 }
 
+void selection_sort(int* arr, const int SIZE) {
+    for(int i = 0; i < SIZE - 1; i++) {
+        int smallest_index = i;
+        for(int j = i + 1; j < SIZE; j++) {
+            if(arr[j] < arr[smallest_index]) {
+                smallest_index = j;
+            }
+        }
+        std::swap(arr[i], arr[smallest_index]);
+    }
+    return;
+}
 
 
 /*
