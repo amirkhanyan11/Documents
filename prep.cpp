@@ -11,6 +11,7 @@ int xor_on(int*, int);
 void insertion_sort(int*, int);
 void printArr(int*, int);
 void bubble(int*, int);
+int rec_bubble(int*, int, int, int);
 
 int main() {
     int arr[] = {2, -55, 7, -37, 4, 5, -9, 0, 12, -45, 3, 21, -8, 13, -6, 17, 1, -11, 16, -23};
@@ -18,15 +19,28 @@ int main() {
     
 
     printArr(arr, size);
-    bubble(arr, size);
+    rec_bubble(arr, size, 0, 1);
     printArr(arr, size);
     return 0;
 }
 
+int rec_bubble(int* arr, int size, int i, int j) {
+    if(i == size - 1){
+        return 0;
+    }
+    if(j == size) {
+        return rec_bubble(arr, size, i + 1, 1);
+    }
+    if(arr[j - 1] > arr[j]) {
+        swap(arr[j - 1], arr[j]);
+    }
+    return rec_bubble(arr, size, i, j + 1);
+}
+
 void bubble(int* arr, int size) {
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < size - 1; i++) {
         bool flag = true;
-        for(int j = 1; j < size - 1; j++) {
+        for(int j = 1; j < size; j++) {
             if(arr[j - 1] > arr[j]) {
                 swap(arr[j - 1], arr[j]);
                 flag = false;
