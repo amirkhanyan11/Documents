@@ -8,13 +8,59 @@ void bit_swap(int*, int, int);
 void reverse_binary(int);
 bool two_power(int);
 int xor_on(int*, int);
+void insertion_sort(int*, int);
+void printArr(int*, int);
+void bubble(int*, int);
 
 int main() {
-    int arr[] = {1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6};
+    int arr[] = {2, -55, 7, -37, 4, 5, -9, 0, 12, -45, 3, 21, -8, 13, -6, 17, 1, -11, 16, -23};
     int size = sizeof(arr) / sizeof(int);
-    cout << xor_on(arr, size) << endl;
+    
+
+    printArr(arr, size);
+    bubble(arr, size);
+    printArr(arr, size);
     return 0;
 }
+
+void bubble(int* arr, int size) {
+    for(int i = 0; i < size; i++) {
+        bool flag = true;
+        for(int j = 1; j < size - 1; j++) {
+            if(arr[j - 1] > arr[j]) {
+                swap(arr[j - 1], arr[j]);
+                flag = false;
+            }
+        }
+        if(flag) {
+            return;
+        }
+    }
+    return;
+}
+
+void insertion_sort(int* arr, int size) {
+    for(int i = 1; i < size; i++) {
+        int current = arr[i];
+        int j = i - 1;
+        while(arr[j] > current && j >= 0) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = current;
+    }
+    return;
+} 
+
+void printArr(int* arr, const int SIZE) {
+    for (int i = 0; i < SIZE; i++) {
+        std::cout << arr[i] << "  ";
+    }
+    std::cout << std::endl;
+
+    return;
+}
+
 
 int xor_on(int* arr, int size) {
     int n = 0;
