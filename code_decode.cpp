@@ -6,17 +6,13 @@ std::string replace_character(std::string, char);
 int word_count(std::string);
 int character_count(std::string);
 void stats(std::fstream&);
-std::string code(std::string*);
+std::string code(std::string);
 void code_and_redirect(std::fstream&, std::fstream&);
-
-
 
 
 int main() {
 
-
     std::fstream source;
-
     std::fstream destination;
 
     source.open("text.txt");
@@ -51,7 +47,6 @@ void stats(std::fstream& file) {
     return;
 
 } 
-
 
 std::string add_something(std::string str) {
     return (str + " qwerty");
@@ -91,28 +86,25 @@ int character_count(std::string str) {
     return count;
 }
 
-
 void code_and_redirect(std::fstream& source, std::fstream& destination) {
 
     std::string current;
 
     while(!source.eof()) {
         std::getline(source, current);
-        destination << code(&current) << std::endl;
+        destination << code(current) << std::endl;
     }
 
     return;
 }
 
-
-std::string code(std::string* str) {
-    std::string tmp = *str;
-    for(int i = 0; i < tmp.length(); i++) {
-        tmp[i] ^= 17;
+std::string code(std::string str) {
+    
+    for(int i = 0; i < str.length(); i++) {
+        str[i] ^= 17;
     }
 
-    *str = tmp;
-
-    return *(str);
+    return str;
 }
+
 
