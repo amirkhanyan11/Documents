@@ -90,6 +90,10 @@ void code_and_redirect(std::fstream& source, std::fstream& destination) {
 
     std::string current;
 
+    if(!source.is_open()) {
+        return;
+    }
+
     while(!source.eof()) {
         std::getline(source, current);
         destination << code(current) << std::endl;
