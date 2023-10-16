@@ -36,6 +36,31 @@ public:
 
 public:
 
+    Stack& operator+ (Stack& other) {
+
+        const int length = (m_size <= other.m_size) ? m_size : other.m_size;
+        
+
+        for(int i = 0; i < length; i++) {
+            m_stack[i] += other.m_stack[i];
+        }
+        
+        return *this;
+    }
+
+    Stack& operator- (Stack& other) {
+
+        const int length = (m_size <= other.m_size) ? m_size : other.m_size;
+        
+
+        for(int i = 0; i < length; i++) {
+            m_stack[i] -= other.m_stack[i];
+        }
+        
+        return *this;
+    }
+
+
     void push(T element) {
         
         if(m_size == m_capacity) {
@@ -84,6 +109,7 @@ private:
     }
 
 
+
 };
 
 
@@ -98,12 +124,14 @@ int main() {
 
     test.push(7);
     test.push(33);
-    test.push(1);
+    test.push(21);
 
     Stack<int> second(test);
 
 
-    cout << second.size() << endl;
+    Stack<int> plu = test + second;
+
+    cout << plu.top() << endl;
 
     return 0;
 }
