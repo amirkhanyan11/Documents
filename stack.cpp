@@ -9,9 +9,21 @@ class Stack
 public:
 
     Stack() {
+
+        m_name = "Mukuch";
         m_size = 0;
         m_capacity = 1;
         m_stack = new T[m_capacity];
+
+    }
+
+    Stack(string name) {
+
+        m_name = name;
+        m_size = 0;
+        m_capacity = 1;
+        m_stack = new T[m_capacity];
+
     }
 
     Stack(const Stack& other) {
@@ -31,33 +43,37 @@ public:
 
     ~Stack() {
         delete[] m_stack;
+        cout << m_name << " deleted" << endl;
     }
 
 
 public:
 
-    Stack& operator+ (Stack& other) {
+    Stack operator+ (const Stack& other) {
+
+        Stack tmp("gag");        
 
         const int length = (m_size <= other.m_size) ? m_size : other.m_size;
         
 
         for(int i = 0; i < length; i++) {
-            m_stack[i] += other.m_stack[i];
+            tmp.push(m_stack[i] + other.m_stack[i]);
         }
         
-        return *this;
+        return tmp;
     }
 
-    Stack& operator- (Stack& other) {
+    Stack operator- (const Stack& other) {
+
+        Stack tmp;        
 
         const int length = (m_size <= other.m_size) ? m_size : other.m_size;
         
-
         for(int i = 0; i < length; i++) {
-            m_stack[i] -= other.m_stack[i];
+            tmp.push(m_stack[i] - other.m_stack[i]);
         }
         
-        return *this;
+        return tmp;
     }
 
 
@@ -93,6 +109,8 @@ private:
     int m_size;
     int m_capacity;
     T* m_stack;
+    string m_name;
+
 
     void resize() {
         
@@ -119,19 +137,31 @@ private:
 
 int main() {
 
-    Stack<int> test;
+    string teststr = "test";
+    string secondstr = "second";
+    string plustr = "plu";
+
+    Stack<int> test(teststr);
 
 
     test.push(7);
     test.push(33);
     test.push(21);
 
-    Stack<int> second(test);
+    Stack<int> second(secondstr);
+
+    second.push(7);
+    second.push(14);
+    second.push(6);
 
 
     Stack<int> plu = test + second;
 
+    Stack<int> vzg("vzg");
+
     cout << plu.top() << endl;
+
+    cout << test.top() << endl;
 
     return 0;
 }
