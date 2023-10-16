@@ -18,7 +18,7 @@ public:
 
         m_size = other.size();
 
-        m_capacity = other.get_capacity();
+        m_capacity = other.m_capacity;
 
         m_stack = new T[m_capacity];
         
@@ -83,9 +83,6 @@ private:
         m_stack = tmp;
     }
 
-    const int get_capacity() const {
-        return m_capacity;
-    }
 
 };
 
