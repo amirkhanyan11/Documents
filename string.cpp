@@ -1,6 +1,8 @@
 #include <iostream>
 
+
 class String
+
 {
 
 public:
@@ -31,6 +33,17 @@ public:
         }
 
     }
+
+    String(const String& other) {
+
+        m_capacity = other.capacity();
+        m_size = other.size();
+        m_string = new char[m_capacity];
+        
+        for(int i = 0; i < m_size; i++) {
+            m_string[i] = other.at(i);
+        }
+    }
     
     ~String() {
 
@@ -41,6 +54,7 @@ public:
 
 
 public:
+
 
     void print() const {
         
@@ -55,8 +69,7 @@ public:
 
         if(index < 0 || index >= m_size) {
             
-            std::cout << "Index out of range" << std::endl;
-            std::abort();
+            throw std::out_of_range("Index out of range");
 
         }
 
@@ -152,8 +165,7 @@ public:
 
         if(index < 0 || index > m_size) {
             
-            std::cout << "Index out of range" << std::endl;
-            std::abort();
+            throw std::out_of_range("Index out of range");
 
         }
 
@@ -195,8 +207,7 @@ public:
 
         if(index < 0 || index >= m_size) {
             
-            std::cout << "Index out of range" << std::endl;
-            std::abort();
+            throw std::out_of_range("Index out of range");
 
         }
 
@@ -324,6 +335,36 @@ public:
     }
 
 
+    String& operator= (const String& other) {
+        
+        m_capacity = other.capacity();
+
+        m_size = other.size();
+
+        delete[] m_string;
+
+        m_string = new char[m_capacity];
+
+        for(int i = 0; i < m_size; i++) {
+
+            m_string[i] = other.at(i);
+        }
+
+        return *this;
+    }
+
+
+    void swap(String& other) {
+    
+        String temp = other;
+
+        other = *this; 
+
+        *this = temp;       
+        
+    }
+
+
 private:
 
     int m_capacity;
@@ -352,10 +393,15 @@ private:
 int main() {
 
     String test = "hello";
+    String other = "world";
 
     test.print();
 
-    std::cout << *test.front() << std::endl;
+    test.swap(other);
+
+    test.print();
+
+    other.print();
 
     return 0;
 }
