@@ -26,6 +26,22 @@ public:
 
     }
 
+    Vector(std::initializer_list<T> list) {
+
+        m_size = 0;
+
+        m_capacity = list.size();
+
+        m_arr = new T[m_capacity];
+
+        for(auto i : list) {
+
+            this->push_back(i);
+
+        }
+
+    }
+
     ~Vector() {
         delete[] m_arr;
     }
@@ -142,16 +158,14 @@ int main() {
     juju.push_back(7);
     juju.push_back(8);
 
-    Vector<int> copy = juju;
+    Vector<int> copy = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     
+    for(int i = 0; i < copy.size(); i++) {
 
-    Vector<string> strs;
+        std::cout << copy[i] << std::endl;
 
-    string first = "aie";
+    }
 
-    strs.push_back(first);
-
-    cout << strs.at(-9) << endl;
 
     return 0;
 }
