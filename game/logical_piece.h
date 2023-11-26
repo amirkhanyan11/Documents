@@ -51,6 +51,7 @@ int sudoku_method(char Board[BOARD_SIZE][BOARD_SIZE], const char element)
 }
 
 
+
 int one_left(const char current_row[BOARD_SIZE])
 {
     int white_spaces = BOARD_SIZE;
@@ -93,9 +94,8 @@ void scan_for_one_left(char Board[BOARD_SIZE][BOARD_SIZE])
         row++;
     }
 
-    row = 0;
-    while (row < BOARD_SIZE)
-    {
-        current = one_left(Board);
-    }
-}
+    // row = 0;
+    // while (row < BOARD_SIZE)
+    // {
+    //     current = one_left(Board)
+    // }

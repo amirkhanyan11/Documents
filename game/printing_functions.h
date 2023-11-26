@@ -13,6 +13,19 @@
 #include <unistd.h>
 #include <stdio.h>
 
+int ft_strlen(char *str)
+{
+    int length;
+
+    length = 0;
+    while (*str)
+    {
+        length++;
+        str++;
+    }
+    return (length);
+}
+
 void print_board(const char board[BOARD_SIZE][BOARD_SIZE])
 {
     int i;
